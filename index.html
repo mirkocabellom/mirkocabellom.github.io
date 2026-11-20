@@ -1,217 +1,407 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#000000">
-  <meta name="description" content="Mirko Cabello — Ingeniería informática Full Stack, desarrollo web, sistemas a medida, agentes IA y automatización.">
-  <title>Mirko Cabello — Ingeniería &amp; Automatización</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <style>
-    :root{--color-void:#000;--color-bone-white:#fff;--color-ash-gray:#9a9a9a;--color-silver-mist:#bdbdbd;--color-electric-iris:#8052ff;--color-saffron-spark:#ffb829;--color-deep-verdant:#15846e;--content-width:1280px}
-    *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth;background:var(--color-void)}
-    body{margin:0;background:var(--color-void);color:var(--color-bone-white);font-family:Inter,Arial,sans-serif;font-weight:200;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-    #particle-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-    .site-nav{position:fixed;z-index:10;top:0;left:0;width:100%;height:86px;padding:0 5.5vw;display:flex;align-items:center;justify-content:space-between;background:transparent}
-    .wordmark{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;letter-spacing:.035em;white-space:nowrap}
-    .mark{width:16px;height:16px;display:block;flex:none}
-    .nav-links{display:flex;align-items:center;gap:clamp(20px,3.1vw,48px);font-size:12px;font-weight:600;letter-spacing:.04em}
-    .nav-links>a:not(.pill){color:var(--color-ash-gray);transition:color .25s ease}
-    .nav-links>a:not(.pill):hover{color:#fff}
-    .pill{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:14px 24px;border-radius:9999px;background:var(--color-electric-iris);color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:transform .25s ease,background-color .25s ease}
-    .pill:hover{transform:translateY(-2px);background:#916dff}
-    main,.site-footer{position:relative;z-index:1}
-    .wrap{width:min(var(--content-width),calc(100% - 11vw));margin-inline:auto}
-    .scene-section{min-height:100svh;display:flex;align-items:center;padding:130px 0 90px;position:relative}
-    .scene-section.compact{min-height:78svh}
-    .grid-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,8vw,124px);align-items:center}
-    .copy{max-width:620px;position:relative;z-index:2}
-    .eyebrow{margin:0 0 24px;color:var(--color-saffron-spark);font-size:13px;line-height:1.4;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
-    h1,h2,h3,p{margin-top:0}
-    .display{font-size:clamp(64px,7.15vw,104px);line-height:1.05;letter-spacing:-.04em;font-weight:400;color:#fff;margin-bottom:28px;max-width:780px}
-    .section-title{font-size:clamp(42px,4.3vw,56px);line-height:1.08;letter-spacing:-.03em;font-weight:400;color:#fff;margin:0 0 24px}
-    .body-copy{font-size:18px;line-height:1.5;font-weight:200;color:var(--color-silver-mist);max-width:590px;margin-bottom:30px}
-    .hero-copy{max-width:660px}
-    .hero .grid-two{grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr)}
-    .hero .copy{grid-column:1}
-    .hero .display{font-size:clamp(72px,8vw,104px)}
-    .hero .body-copy{max-width:570px}
-    .hero-action{margin-top:8px}
-    .interlude{min-height:75svh;text-align:center;justify-content:center}
-    .interlude p{max-width:760px;margin:0 auto;font-size:clamp(18px,2vw,28px);line-height:1.5;font-weight:200;color:#fff;letter-spacing:-.015em}
-    .conversation .copy{grid-column:2}
-    .code-section .copy,.reality .copy{grid-column:1}
-    .gold{color:var(--color-saffron-spark)}
-    .code-lines{list-style:none;padding:0;margin:32px 0 0;color:var(--color-ash-gray);font:400 14px/1.9 'JetBrains Mono',ui-monospace,monospace;letter-spacing:0}
-    .code-lines li{white-space:pre-wrap}
-    .code-lines .ln{display:inline-block;width:32px;color:#595959;user-select:none}
-    .service-list{list-style:none;padding:0;margin:34px 0 0;display:grid;gap:26px}
-    .service-list li{max-width:600px}
-    .service-list h3{margin:0 0 6px;color:#fff;font-size:24px;line-height:1.3;font-weight:400;letter-spacing:-.02em}
-    .service-list p{margin:0;color:var(--color-ash-gray);font-size:16px;line-height:1.55;font-weight:200}
-    .profile-section{min-height:92svh}
-    .profile-title{font-size:clamp(42px,4.4vw,48px);line-height:1.12;letter-spacing:-.03em;font-weight:400;margin:0 0 25px;max-width:560px}
-    .profile-copy{font-size:18px;line-height:1.5;font-weight:200;color:var(--color-silver-mist);max-width:560px}
-    .profile-card{justify-self:end;width:min(100%,480px)}
-    .portrait{aspect-ratio:1.16/1;width:100%;border-radius:24px;overflow:hidden;background:#000;margin-bottom:23px}
-    .portrait svg{display:block;width:100%;height:100%}
-    .profile-tag{font-size:12px;color:var(--color-electric-iris);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin:0 0 9px}
-    .profile-name{font-size:28px;line-height:1.2;font-weight:400;letter-spacing:-.02em;margin:0 0 12px}
-    .profile-link{font-size:14px;color:var(--color-ash-gray);transition:color .2s}.profile-link:hover{color:#fff}
-    .closing{min-height:100svh;text-align:center;justify-content:center;padding-top:100px;padding-bottom:115px}
-    .closing-content{max-width:850px;margin:0 auto;position:relative;z-index:2}
-    .closing .section-title{font-size:clamp(48px,6vw,64px);line-height:1.08;max-width:800px;margin:0 auto}
-    .closing .pill{margin-top:32px}
-    .site-footer{position:absolute;z-index:2;bottom:25px;left:0;width:100%;color:var(--color-ash-gray);font-size:12px;font-weight:400}
-    .site-footer .wrap{display:flex;justify-content:space-between;gap:20px}
-    .modal{position:fixed;inset:0;z-index:30;display:none;place-items:center;padding:24px;background:#000}
-    .modal.open{display:grid}
-    .modal-panel{width:min(100%,500px);padding:clamp(26px,5vw,44px);border:1px solid var(--color-electric-iris);background:#000;position:relative}
-    .modal-close{position:absolute;right:18px;top:14px;padding:6px;color:var(--color-ash-gray);font-size:24px;line-height:1;background:none;border:0;cursor:pointer}
-    .modal-panel h2{font-size:38px;font-weight:400;letter-spacing:-.035em;margin:0 0 12px}
-    .modal-panel p{font-size:16px;line-height:1.5;color:var(--color-silver-mist);margin:0 0 24px}
-    .modal-actions{display:flex;flex-wrap:wrap;gap:12px}
-    .modal-actions a{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:14px 18px;border-radius:9999px;background:var(--color-electric-iris)}
-    .modal-actions a.secondary{background:transparent;border:1px solid #333;color:#fff}
-    .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
-    .reveal.is-visible{opacity:1;transform:translateY(0)}
-    @media(max-width:760px){.site-nav{height:72px;padding:0 22px}.nav-links{gap:16px}.nav-links>a:not(.pill){display:none}.nav-links .pill{min-height:40px;padding:11px 17px;font-size:11px}.wordmark{font-size:12px}.wrap{width:calc(100% - 44px)}.scene-section{padding:110px 0 72px;min-height:92svh}.scene-section.compact{min-height:72svh}.grid-two,.hero .grid-two{grid-template-columns:1fr;gap:42px}.hero .copy,.conversation .copy,.code-section .copy,.reality .copy{grid-column:1}.hero .display{font-size:clamp(58px,12vw,82px)}.display{font-size:clamp(58px,12vw,82px)}.section-title{font-size:clamp(38px,9vw,48px)}.body-copy,.profile-copy{font-size:17px}.interlude p{font-size:20px}.conversation .grid-two{padding-top:90px}.reality .grid-two{padding-top:60px}.service-list{gap:21px}.service-list h3{font-size:21px}.service-list p{font-size:15px}.profile-card{justify-self:start;width:100%}.profile-title{font-size:40px}.closing .section-title{font-size:clamp(42px,10vw,56px)}.site-footer .wrap{flex-direction:column;gap:6px}.closing{padding-bottom:145px}}
-    @media(max-width:420px){.eyebrow{font-size:11px}.display,.hero .display{font-size:56px}.section-title{font-size:39px}.code-lines{font-size:12px}.service-list h3{font-size:19px}.service-list p{font-size:14px}.modal-actions{flex-direction:column}.modal-actions a{text-align:center}}
-    /* Spatial pass: top fade mask, stronger text/art separation and editorial portrait */
-    .site-nav{height:88px;z-index:50;background:linear-gradient(to bottom,#000000 55%,rgba(0,0,0,.85) 80%,transparent 100%)}
-    .hero-copy{max-width:580px}
-    .scene-section.interlude{min-height:145svh;display:block;padding-top:1px}
-    .interlude .wrap{position:sticky;top:40vh;margin-top:40vh}
-    .hero .grid-two{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,7vw,90px)}
-    .hero .display{font-size:clamp(3.2rem,5.2vw,5.5rem);line-height:1.04;max-width:580px}
-    .conversation .copy{max-width:520px}
-    .code-section .copy,.reality .copy{max-width:540px}
-    .code-section .grid-two,.reality .grid-two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-    .service-list{gap:28px}
-    .service-list h3{font-size:22px}
-    .service-list p{font-size:15px}
-    .profile-card{width:320px;justify-self:end}
-    .portrait{width:320px;height:380px;aspect-ratio:auto;background:#0a0a0a}
-    .portrait img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.25) brightness(.68)}
-    .closing .section-title{font-size:clamp(2.8rem,5vw,4.8rem);max-width:820px}
-    .closing .pill{margin-top:36px}
-    .modal-panel{max-height:92svh;overflow:auto}
-    .modal-panel form{display:grid;gap:13px;margin:24px 0}
-    .modal-panel input,.modal-panel textarea{width:100%;background:transparent;border:0;border-bottom:1px solid #363636;border-radius:0;padding:12px 2px;color:#fff;font:200 15px/1.5 Inter,sans-serif;outline:none}
-    .modal-panel input:focus,.modal-panel textarea:focus{border-color:var(--color-electric-iris)}
-    .modal-panel textarea{min-height:88px;resize:vertical}
-    .modal-panel form button{justify-self:start;border:0;cursor:pointer;font-family:inherit}
-    @media(max-width:760px){.site-nav{height:88px}.hero .display{font-size:clamp(3.2rem,10vw,4.7rem)}.profile-card{width:min(100%,320px);justify-self:start}.portrait{width:100%;height:380px}.conversation .copy,.code-section .copy,.reality .copy{max-width:100%}}
-    /* Free editorial headlines with glass containers for supporting information. */
-    .display,.section-title,.profile-title{font-size:clamp(42px,4.4vw,54px)!important;line-height:1.08;letter-spacing:-.035em;font-weight:400;background:linear-gradient(105deg,#fff 12%,#e5e0f2 62%,#c7b9ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;max-width:720px}
-    .hero .display{font-size:clamp(42px,4.4vw,54px)!important;max-width:580px;line-height:1.08}
-    .section-title .gold{background:none;color:var(--color-saffron-spark);-webkit-text-fill-color:var(--color-saffron-spark)}
-    .glass-card{position:relative;isolation:isolate;padding:24px 26px;border:1px solid rgba(255,255,255,.12);border-radius:20px;background:rgba(10,10,10,.76);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-    .glass-card::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.035),transparent 55%);pointer-events:none;z-index:0}
-    .glass-card>*{position:relative;z-index:1}
-    .glass-card .body-copy{font-size:15px;line-height:1.55;color:#d0d0d0;margin:0}
-    .interlude p{max-width:680px;margin:0 auto;padding:0;border:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;font-size:clamp(24px,2.4vw,28px);line-height:1.45;letter-spacing:-.02em;color:#fff}
-    .hero .grid-two{grid-template-columns:minmax(0,1.08fr) minmax(280px,.72fr);gap:clamp(28px,6vw,84px)}
-    .hero-copy{max-width:580px}.hero-copy .eyebrow{margin-bottom:18px}.hero-support{display:grid;gap:14px;margin-top:25px;max-width:540px}
-    .hero-visual{min-height:330px;display:grid;place-items:center;align-self:center;overflow:hidden}
-    .hero-visual svg,.conversation-visual svg{width:100%;max-width:280px;height:auto;overflow:visible}
-    .conversation .copy{max-width:520px}.conversation .copy .section-title{margin-bottom:24px}
-    .conversation-card{display:grid;grid-template-columns:minmax(0,1fr) 130px;gap:22px;align-items:center}
-    .conversation-visual{display:grid;place-items:center;min-height:120px}
-    .code-section .copy,.reality .copy{max-width:620px}.code-card{margin-top:24px}.code-card .body-copy{margin-bottom:18px}
-    .code-lines{margin-top:15px;font-size:13px;line-height:1.85;overflow-wrap:anywhere}
-    .service-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:28px}
-    .reality .grid-two{grid-template-columns:1fr}.reality .copy{max-width:none}
-    .reality .service-list{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .service-list li{max-width:none;min-height:174px;padding:21px 20px}
-    .service-list h3{font-size:19px;line-height:1.3;margin-bottom:9px}
-    .service-list p{font-size:15px;line-height:1.55;color:#c5c5c5}
-    .profile-section .grid-two>div:first-child .profile-copy{margin-top:25px}
-    .profile-card{padding:14px 14px 22px;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:rgba(10,10,10,.76);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-    .glass-card,.profile-card{background:rgba(10,12,18,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-    .profile-card .portrait{width:100%;margin-bottom:18px;border-radius:14px}
-    .profile-tag,.profile-name,.profile-link{margin-left:8px;margin-right:8px}
-    .closing .section-title{font-size:clamp(42px,4.4vw,54px)!important}
-    @media(max-width:1050px){.reality .service-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:760px){.display,.section-title,.profile-title,.hero .display,.closing .section-title{font-size:clamp(42px,8.5vw,50px)!important}.hero .grid-two{grid-template-columns:1fr;gap:24px}.hero-visual{min-height:210px;max-width:100%;grid-row:2}.hero-copy{grid-row:1}.conversation-card{grid-template-columns:1fr}.conversation-visual{min-height:90px;grid-row:1}.service-list{grid-template-columns:1fr;gap:12px}.service-list li{min-height:0;padding:19px}.profile-card{justify-self:start}.glass-card{padding:21px}}
-    @media(max-width:420px){.glass-card{padding:18px}.hero-visual{min-height:170px}.service-list h3{font-size:18px}.service-list p{font-size:14px}}
-    /* Reading runway and an uncut final frame. */
-    .scene-section:not(.interlude){min-height:100svh;padding-top:clamp(130px,15vh,180px);padding-bottom:clamp(120px,13vh,160px)}
-    .scene-section.compact:not(.interlude),.profile-section{min-height:100svh}
-    .scene-section.interlude{min-height:145svh}
-    .closing{min-height:100svh;padding:120px 0 170px;scroll-margin-bottom:0}
-    .closing-content{width:100%;margin-inline:auto}
-    .closing .pill{margin-top:36px}
-    .site-footer{bottom:24px}
-    @media(max-width:760px){.scene-section:not(.interlude){min-height:100svh;padding:116px 0 112px}.closing{min-height:100svh;padding:118px 0 170px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FluidPump - Soluciones Integrales en Equipos de Bombeo y Mantención Industrial</title>
+    <meta name="description" content="Venta, instalación y servicio técnico especializado para edificios, parcelas e industrias en Chile. Emergencias 24/7.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <canvas id="particle-canvas" aria-hidden="true"></canvas>
-  <header class="site-nav">
-    <a class="wordmark" href="#inicio" aria-label="Mirko Cabello, inicio"><svg class="mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 17H1.5L10 1.5Z" fill="none" stroke="#8052ff" stroke-width="1.6"/><path d="m10 6 5.1 9.1H4.9L10 6Z" fill="#8052ff"/></svg><span>MIRKO CABELLO</span></a>
-    <nav class="nav-links" aria-label="Navegación principal"><a href="#proceso">PROCESO</a><a href="#soluciones">SOLUCIONES</a><a href="#perfil">PERFIL</a><a class="pill" href="#contacto" data-open-contact>HABLEMOS</a></nav>
-  </header>
-  <main>
-    <section class="scene-section hero" id="inicio" data-shape="lightbulb">
-      <div class="wrap grid-two"><div class="copy hero-copy reveal"><p class="eyebrow">INGENIERÍA &amp; AUTOMATIZACIÓN</p><h1 class="display">Todo gran sistema empieza con una idea.</h1><div class="glass-card hero-support"><p class="body-copy">Ingeniería de software, automatizaciones con IA y plataformas digitales para llevar tu operación al siguiente nivel.</p></div></div></div>
+
+    <!-- TOPBAR -->
+    <div class="topbar d-none d-md-block">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="topbar-left">
+                    <a href="tel:+56912345678"><i class="fas fa-phone-alt me-1"></i> +56 9 1234 5678</a>
+                    <span class="divider"></span>
+                    <a href="https://wa.me/56912345678"><i class="fab fa-whatsapp me-1"></i> WhatsApp</a>
+                    <span class="divider"></span>
+                    <a href="mailto:ventas@fluidpump.cl"><i class="fas fa-envelope me-1"></i> ventas@fluidpump.cl</a>
+                    <span class="divider d-none d-lg-inline"></span>
+                    <span class="d-none d-lg-inline"><i class="fas fa-clock me-1"></i> Lun - Vie: 8:00 - 18:00</span>
+                </div>
+                <div class="topbar-right d-none d-md-block">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-main sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="LOGO.png" alt="FluidPump" class="brand-icon">
+                Fluid<span>Pump</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars" style="font-size: 1.3rem; color: var(--primary-dark);"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tienda-banner">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonios">Casos de Éxito</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link btn-cta-nav" href="https://wa.me/56912345678"><i class="fas fa-bolt me-1"></i> Emergencia 24/7</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div class="hero-badge">
+                        <i class="fas fa-shield-alt"></i> Servicio Técnico Certificado en Chile
+                    </div>
+                    <h1>Soluciones Integrales en <span>Equipos de Bombeo</span> y Mantención Industrial</h1>
+                    <p class="lead">Venta, instalación y servicio técnico especializado para edificios, parcelas e industrias en todo Chile. Respuesta inmediata ante emergencias.</p>
+                    <div class="hero-buttons">
+                        <a href="#servicios" class="btn-hero-primary">
+                            <i class="fas fa-cogs"></i> Ver Servicios y Mantención
+                        </a>
+                        <a href="tienda.html" class="btn-hero-outline">
+                            <i class="fas fa-boxes-stacked"></i> Explorar Catálogo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-floating-card d-none d-lg-block">
+            <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
+            <h5>Soporte Técnico Inmediato</h5>
+            <p>Resolvemos tu emergencia en minutos. Atención directa por WhatsApp.</p>
+            <a href="https://wa.me/56912345678?text=Necesito%20ayuda%20con%20una%20bomba" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Chat Ahora
+            </a>
+        </div>
     </section>
-    <section class="scene-section compact interlude" id="proceso" data-shape="chaos"><div class="wrap"><p class="reveal">Hoy muchas empresas operan entre herramientas desconectadas, tareas manuales repetitivas y poca visibilidad en internet.</p></div></section>
-    <section class="scene-section conversation" data-shape="brain"><div class="wrap grid-two"><div aria-hidden="true"></div><div class="copy reveal"><p class="eyebrow">01 / LA CONVERSACIÓN</p><h2 class="section-title">Tú traes el caos. Yo diseño la arquitectura.</h2><div class="glass-card conversation-card"><p class="body-copy">Analizamos tus cuellos de botella desde la raíz para convertir necesidades de negocio en un plano técnico claro, escalable y sin fricciones.</p><div class="conversation-visual" aria-hidden="true"><svg viewBox="0 0 160 120" fill="none"><path d="M38 34 79 58l42-26M38 34l4 55 37-31m42-26-1 57-41-31m0 0v50" stroke="#8c72d8" stroke-opacity=".8" stroke-width="1.2"/><circle cx="38" cy="34" r="7" stroke="#ffb829"/><circle cx="121" cy="32" r="7" stroke="#8052ff"/><circle cx="42" cy="89" r="7" stroke="#38bdf8"/><circle cx="120" cy="89" r="7" stroke="#15846e"/><circle cx="79" cy="58" r="9" stroke="#fff"/><circle cx="79" cy="108" r="6" stroke="#8052ff"/></svg></div></div></div></div></section>
-    <section class="scene-section code-section" data-shape="tesseract"><div class="wrap grid-two"><div class="copy reveal"><p class="eyebrow">02 / AL CÓDIGO</p><h2 class="section-title">Código limpio. Agentes IA. <span class="gold">Automatización real.</span></h2><div class="glass-card code-card"><p class="body-copy">Construyo el motor detrás de tu operación: integraciones vía API, sistemas web de alto rendimiento y agentes inteligentes que trabajan por tu equipo.</p><ol class="code-lines" aria-label="Ejemplo de automatización"><li><span class="ln">01</span>const solucion = await construir(tuNegocio);</li><li><span class="ln">02</span>return agentesIA.automatizar(solucion);</li></ol></div></div><div aria-hidden="true"></div></div></section>
-    <section class="scene-section reality" id="soluciones" data-shape="globe"><div class="wrap grid-two"><div class="copy reveal"><p class="eyebrow">03 / LA REALIDAD</p><h2 class="section-title">Sistemas vivos. Marca visible.</h2><ul class="service-list"><li class="glass-card"><h3>Desarrollo Web de Alto Impacto</h3><p>Sitios rápidos y modernos diseñados para convertir visitas en clientes.</p></li><li class="glass-card"><h3>Sistemas a Medida &amp; APIs</h3><p>Software adaptado a tu operación, conectando tus herramientas en tiempo real.</p></li><li class="glass-card"><h3>Agentes IA &amp; Automatización</h3><p>Flujos autónomos que eliminan tareas manuales y aceleran respuestas.</p></li><li class="glass-card"><h3>Posicionamiento Digital</h3><p>SEO técnico y estrategia para que tu empresa sea encontrada y reconocida en internet.</p></li></ul></div><div aria-hidden="true"></div></div></section>
-    <section class="scene-section profile-section" id="perfil" data-shape="dissolve"><div class="wrap grid-two"><div class="reveal"><h2 class="profile-title">Del problema operativo a la arquitectura en producción.</h2><div class="glass-card"><p class="body-copy">Mi diferencial es abordar el proyecto completo: diseño la solución, el desarrollo, integro tus plataformas existentes e implemento automatizaciones con IA en entornos seguros y listos para escalar.</p></div></div><div class="profile-card reveal"><div class="portrait"><img src="perfil.jpg" alt="Retrato editorial en blanco y negro" loading="lazy"></div><p class="profile-tag">INGENIERO EN INFORMÁTICA • FULL STACK &amp; IA</p><h3 class="profile-name">Mirko Cabello</h3><a class="profile-link" href="https://www.linkedin.com/in/mirkocabello/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></section>
-    <section class="scene-section closing" id="contacto" data-shape="nexus"><div class="wrap closing-content reveal"><h2 class="section-title">Hagamos que tu próxima idea se haga realidad.</h2><button class="pill" type="button" data-open-contact>AGENDAR CONVERSACIÓN</button></div><footer class="site-footer"><div class="wrap"><span>© 2026 Dev Mirko Cabello</span></div></footer></section>
-  </main>
-  <div class="modal" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-panel"><button class="modal-close" type="button" aria-label="Cerrar diálogo">×</button><p class="eyebrow">HABLEMOS DE TU PROYECTO</p><h2 id="modal-title">¿Qué estás imaginando?</h2><p>Cuéntame en qué estás trabajando y buscamos el mejor camino para hacerlo realidad.</p><form id="quick-contact"><input name="name" autocomplete="name" placeholder="Tu nombre" required><input type="email" name="email" autocomplete="email" placeholder="Tu correo" required><textarea name="message" placeholder="Cuéntame brevemente tu idea" required></textarea><button class="pill" type="submit">ENVIAR MENSAJE</button></form><div class="modal-actions"><a href="mailto:mirko.cabello@gmail.com?subject=Hablemos%20de%20mi%20proyecto">CORREO DIRECTO</a><a class="secondary" href="https://wa.me/?text=Hola%20Mirko%2C%20quiero%20conversar%20sobre%20un%20proyecto" target="_blank" rel="noopener noreferrer">ABRIR WHATSAPP ↗</a></div></div></div>
-  <script>
-  (()=>{
-    gsap.registerPlugin(ScrollTrigger);
-    const canvas=document.getElementById('particle-canvas'),ctx=canvas.getContext('2d',{alpha:true}),colors=['#8052ff','#ffb829','#15846e','#ec4899','#38bdf8'];
-    const COUNT=2200,AMBIENT=90,FOCAL_LENGTH=650,allCount=COUNT+AMBIENT,scene={morph:0,offsetX:.24,offsetY:0,alpha:1};let width=0,height=0,dpr=1,particles=[],rotationY=0,rotationX=.12,parallaxY=0,targetRotationX=.12,targetParallaxY=0,pointerX=0,pointerY=0;
-    const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),rand=(a,b)=>a+Math.random()*(b-a),randomSphere=(radius=1,surface=false)=>{const u=rand(-1,1),a=rand(0,Math.PI*2),r=surface?radius:Math.cbrt(Math.random())*radius,q=Math.sqrt(1-u*u);return{x:Math.cos(a)*q*r,y:u*r,z:Math.sin(a)*q*r}};
-    function edgeFramePoint(edgeX=.45,edgeY=.42,zSpread=.12){let x,y;const edge=Math.floor(Math.random()*4);if(edge===0||edge===1){x=(edge===0?-1:1)*rand(edgeX*.82,edgeX);y=rand(-edgeY,edgeY)}else{x=rand(-edgeX,edgeX);y=(edge===2?-1:1)*rand(edgeY*.82,edgeY)}return{x:x*width*4.2/FOCAL_LENGTH,y:-y*height*4.2/FOCAL_LENGTH,z:rand(-zSpread,zSpread)}}
-    function tesseractEdgePoint(){const v=Array.from({length:4},()=>Math.random()<.5?-1:1),axis=Math.floor(Math.random()*4),t=rand(-1,1);v[axis]=t;const ax=.42,ay=.58,x=v[0]*Math.cos(ax)-v[3]*Math.sin(ax),w=v[3]*Math.cos(ax)+v[0]*Math.sin(ax),y=v[1]*Math.cos(ay)-v[2]*Math.sin(ay),z=v[2]*Math.cos(ay)+v[1]*Math.sin(ay),perspective=1/(2.8-w*.24);return{x:x*perspective,y:y*perspective,z:z*perspective}}
-    function makeTargets(){const data=Array.from({length:7},()=>new Array(COUNT));for(let i=0;i<COUNT;i++){
-      const a=rand(0,Math.PI*2),rad=Math.sqrt(Math.random());let bulb;
-      if(Math.random()<.76){bulb={x:Math.cos(a)*.9*rad+.13,y:Math.sin(a)*.91*rad+.24,z:rand(-.72,.72)*Math.sqrt(1-rad*rad)}}else{const ring=i%3;bulb={x:rand(-.3,.3),y:rand(-.98,-.43)-ring*.08,z:rand(-.3,.3)}}
-      const chaos=edgeFramePoint(.47,.43,.08);const side=Math.random()<.5?-1:1,ba=rand(0,Math.PI*2),bt=rand(-1,1),br=Math.sqrt(1-bt*bt),fold=rand(.86,1.15);let brain={x:side*.53+Math.cos(ba)*br*.76*fold,y:bt*.83+Math.sin(ba)*br*.7*fold,z:rand(-.58,.58)};brain.x+=Math.sin(brain.y*12+brain.z*7)*.055;brain.y+=Math.sin(brain.x*10)*.04;
-      const edge=tesseractEdgePoint(),tesseract={x:edge.x*1.35,y:edge.y*1.35,z:edge.z*1.35};
-      const globeP=randomSphere(1.03,true),lon=Math.atan2(globeP.z,globeP.x),lat=Math.asin(globeP.y),land=(lon>-.95&&lon<.2&&lat>-.15&&lat<1.12)||(lon>-.45&&lon<.15&&lat>-.95&&lat<-.2)||(lon>.25&&lon<1.75&&lat>-.55&&lat<.9)||((lon>1.8||lon< -2.55)&&lat>-.65&&lat<.75)||(lon> -2.25&&lon<-.9&&lat>-.45&&lat<.85);const globe={x:globeP.x*(land?1.06:1),y:globeP.y*(land?1.06:1),z:globeP.z*(land?1.06:1)};
-      const nexus=edgeFramePoint(.48,.44,.42),lobe=1+.12*Math.sin(Math.atan2(nexus.y,nexus.x)*4);nexus.x*=lobe;nexus.y*=lobe;
-      const dissolve=edgeFramePoint(.49,.45,.25);
-      data[0][i]={x:bulb.x*1.35,y:bulb.y*1.35,z:bulb.z*1.2};data[1][i]=chaos;data[2][i]={x:brain.x*1.15,y:brain.y*1.22,z:brain.z*1.2};data[3][i]={x:tesseract.x*1.2,y:tesseract.y*1.2,z:tesseract.z*1.2};data[4][i]={x:globe.x*1.3,y:globe.y*1.3,z:globe.z*1.3};data[5][i]=dissolve;data[6][i]=nexus;
-    }return data}
-    let targets=[];
-    function resize(){width=innerWidth;height=innerHeight;dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);targets=makeTargets();particles=Array.from({length:allCount},(_,i)=>({x:rand(-1,1),y:rand(-1,1),z:rand(-1,1),rx:0,ry:0,rz:0,rvx:0,rvy:0,rvz:0,size:rand(.8,1.2),ambientSize:rand(3.2,4.5),spin:rand(0,Math.PI*2),spinSpeed:rand(-.012,.012),phase:rand(0,Math.PI*2),color:colors[Math.floor(Math.random()*colors.length)],ambient:i>=COUNT,ax:rand(0,width),ay:rand(0,height),avx:rand(-.18,.18),avy:rand(-.16,.16)}))}
-    addEventListener('resize',resize,{passive:true});addEventListener('pointermove',e=>{pointerX=e.clientX/width-.5;pointerY=e.clientY/height-.5;targetRotationX=.12+pointerY*.18;targetParallaxY=pointerX*.18;},{passive:true});resize();
-    const offsets=[.24,0,-.25,.25,.28,0,0],offsetYs=[0,0,0,0,-.22,0,0],opacities=[1,1,1,1,.15,.08,.15];
-    function project(p,time,turbulence){let x=p.x,y=p.y,z=p.z;const expansion=1+turbulence*.34,angle=Math.atan2(y,x)+turbulence*2.4,rad=Math.hypot(x,y)*expansion;x=Math.cos(angle)*rad;y=Math.sin(angle)*rad;const idle=Math.sin(time*.002+p.phase)*6,ay=rotationY+parallaxY,cy=Math.cos(ay),sy=Math.sin(ay),cx=Math.cos(rotationX),sx=Math.sin(rotationX),xr=x*cy-z*sy,zr=x*sy+z*cy,yr=y*cx-zr*sx,zf=y*sx+zr*cx,depth=4.2-zf,scale=FOCAL_LENGTH/depth;return{x:width*.5+scene.offsetX*width+xr*scale,y:height*.5+scene.offsetY*height-yr*scale+idle,z:zf,scale}}
-    function drawTriangle(x,y,size,color,alpha,angle,lineWidth=1.2){ctx.save();ctx.translate(x,y);ctx.rotate(angle);ctx.globalAlpha=alpha*scene.alpha;ctx.strokeStyle=color;ctx.lineWidth=lineWidth;ctx.beginPath();ctx.moveTo(0,-size);ctx.lineTo(size*.866,size*.5);ctx.lineTo(-size*.866,size*.5);ctx.closePath();ctx.stroke();ctx.restore()}
-    function frame(time){ctx.clearRect(0,0,width,height);const n=Math.min(6,Math.floor(scene.morph)),m=scene.morph-n,next=Math.min(6,n+1),transition=Math.sin(Math.PI*clamp(m,0,1)),turbulence=(m>.2&&m<.8)?transition:0;rotationY+=.004+turbulence*.012;rotationX+=(targetRotationX-rotationX)*.035;parallaxY+=(targetParallaxY-parallaxY)*.035;const chaosAmount=clamp(1-Math.abs(scene.morph-1)/.42,0,1),nexusAmount=clamp(1-Math.abs(scene.morph-6)/.7,0,1),projected=[];
-      for(let i=0;i<COUNT;i++){const p=particles[i],a=targets[n][i],b=targets[next][i];p.tx=a.x+(b.x-a.x)*m;p.ty=a.y+(b.y-a.y)*m;p.tz=a.z+(b.z-a.z)*m;const mx=(pointerX*width-scene.offsetX*width)*4.2/FOCAL_LENGTH,my=-(pointerY*height-scene.offsetY*height)*4.2/FOCAL_LENGTH,dx=p.tx-mx,dy=p.ty-my,dist=Math.hypot(dx,dy),force=dist<.72?(1-dist/.72)*.035:0;p.rvx+=(dist?dx/dist*force:0)-p.rx*.045;p.rvy+=(dist?dy/dist*force:0)-p.ry*.045;p.rvz+=-p.rz*.045;p.rvx*=.8;p.rvy*=.8;p.rvz*=.8;p.rx+=p.rvx;p.ry+=p.rvy;p.rz+=p.rvz;p.x=p.tx+p.rx;p.y=p.ty+p.ry;p.z=p.tz+p.rz;p.spin+=p.spinSpeed*(1+turbulence*2);const q=project(p,time,turbulence);projected.push({p,q})}
-      projected.sort((a,b)=>a.q.z-b.q.z);
-      for(const {p,q} of projected){if(q.x<-30||q.x>width+30||q.y<-30||q.y>height+30||q.scale<0)continue;const size=clamp(clamp(2.8+q.z*2.1,1.2,6)*p.size,1,6),depthAlpha=q.z>0?clamp(.72+q.z*.16,.72,.95):.25,alpha=(depthAlpha*(1-chaosAmount)+.45*chaosAmount)*(1-.45*nexusAmount);drawTriangle(q.x,q.y,size,p.color,alpha,p.spin+rotationY*.5)}
-      for(let i=COUNT;i<allCount;i++){const p=particles[i];p.ax+=p.avx;p.ay+=p.avy;if(p.ax< -10)p.ax=width+10;if(p.ax>width+10)p.ax=-10;if(p.ay< -10)p.ay=height+10;if(p.ay>height+10)p.ay=-10;p.spin+=p.spinSpeed*.25;drawTriangle(p.ax,p.ay,p.ambientSize,p.color,.28,p.spin,1.2)}
-      requestAnimationFrame(frame)
-    }
-    requestAnimationFrame(frame);
-    const shapeIndex={lightbulb:0,chaos:1,brain:2,tesseract:3,globe:4,dissolve:5,nexus:6};
-    document.querySelectorAll('[data-shape]').forEach(section=>{const index=shapeIndex[section.dataset.shape],from=Math.max(0,index-1),fromOffset=offsets[from],toOffset=offsets[index],fromY=offsetYs[from],toY=offsetYs[index],fromAlpha=opacities[from],toAlpha=opacities[index],driver={p:0},apply=()=>{const p=driver.p;scene.morph=from+(index-from)*p;scene.offsetX=fromOffset+(toOffset-fromOffset)*p;scene.offsetY=fromY+(toY-fromY)*p;scene.alpha=fromAlpha+(toAlpha-fromAlpha)*p};gsap.to(driver,{p:1,ease:'none',scrollTrigger:{trigger:section,start:'top top',end:'bottom top',scrub:true},onUpdate:apply})});
-    const revealObserver=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}},{threshold:.12,rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
-    const modal=document.getElementById('contact-modal'),closeButton=modal.querySelector('.modal-close');function openModal(e){if(e)e.preventDefault();modal.classList.add('open');closeButton.focus()}function closeModal(){modal.classList.remove('open')}
-    document.querySelectorAll('[data-open-contact]').forEach(el=>el.addEventListener('click',openModal));closeButton.addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-    document.getElementById('quick-contact').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget),subject=encodeURIComponent('Proyecto web — '+f.get('name')),body=encodeURIComponent('Nombre: '+f.get('name')+'\nCorreo: '+f.get('email')+'\n\n'+f.get('message'));location.href='mailto:mirko.cabello@gmail.com?subject='+subject+'&body='+body});
-    ScrollTrigger.refresh();
-  })();
-  </script>
+
+    <!-- TRUST BAND -->
+    <section class="trust-band section-padding">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-lg-3">
+                    <div class="trust-card reveal">
+                        <div class="trust-icon"><i class="fas fa-award"></i></div>
+                        <h3 class="counter" data-target="8">0</h3>
+                        <p>+8 Años de Experiencia</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="trust-card reveal">
+                        <div class="trust-icon"><i class="fas fa-truck-fast"></i></div>
+                        <h3>100%</h3>
+                        <p>Despacho a Todo Chile</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="trust-card reveal">
+                        <div class="trust-icon"><i class="fas fa-user-gear"></i></div>
+                        <h3>24/7</h3>
+                        <p>Atención Especializada</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="trust-card reveal">
+                        <div class="trust-icon"><i class="fas fa-certificate"></i></div>
+                        <h3>100%</h3>
+                        <p>Garantía de Servicio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services-section section-padding" id="servicios">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Nuestros Servicios</h2>
+                <p>Soluciones especializadas para cada necesidad de bombeo y mantención industrial</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card reveal">
+                        <div class="card-top"></div>
+                        <div class="card-body">
+                            <div class="icon-wrap"><i class="fas fa-wrench"></i></div>
+                            <h5>Mantención Preventiva de Salas de Bombas</h5>
+                            <p>Servicio completo de mantención para edificios y condominios. Evitamos fallas costosas con revisiones programadas.</p>
+                            <a href="https://wa.me/56912345678?text=Quiero%20cotizar%20mantención" class="btn-more">Cotizar Ahora <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card reveal">
+                        <div class="card-top"></div>
+                        <div class="card-body">
+                            <div class="icon-wrap"><i class="fas fa-tools"></i></div>
+                            <h5>Reparación y Servicio Técnico</h5>
+                            <p>Diagnóstico preciso y reparación de todo tipo de bombas. Repuestos originales con garantía total.</p>
+                            <a href="https://wa.me/56912345678?text=Necesito%20reparación" class="btn-more">Cotizar Ahora <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card reveal">
+                        <div class="card-top"></div>
+                        <div class="card-body">
+                            <div class="icon-wrap"><i class="fas fa-water"></i></div>
+                            <h5>Instalación de Pozos Profundos</h5>
+                            <p>Instalación de bombas sumergibles y pozos profundos para sectores agrícolas, parcelas e industrias.</p>
+                            <a href="https://wa.me/56912345678?text=Quiero%20instalar%20pozo" class="btn-more">Cotizar Ahora <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card reveal">
+                        <div class="card-top"></div>
+                        <div class="card-body">
+                            <div class="icon-wrap"><i class="fas fa-bolt"></i></div>
+                            <h5>Sistemas Hidráulicos y Tableros</h5>
+                            <p>Diseño, instalación y mantención de sistemas hidráulicos y tableros eléctricos de control.</p>
+                            <a href="https://wa.me/56912345678?text=Necesito%20tablero" class="btn-more">Cotizar Ahora <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIENDA BANNER -->
+    <section class="tienda-banner section-padding" id="tienda-banner">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <!-- Columna Izquierda: Contenido y Categorias -->
+                <div class="col-lg-7">
+                    <span class="banner-badge">TIENDA ONLINE & CATÁLOGO</span>
+                    <h2>Encuentra Equipos de Bombeo y Repuestos Técnicos</h2>
+                    <p class="banner-desc">Catálogo profesional con las mejores marcas: bombas sumergibles, tableros eléctricos, variadores de frecuencia, equipos solares y más. Envíos a todo Chile y asesoría técnica garantizada.</p>
+                    <ul class="category-tags">
+                        <li><a href="#"><i class="fas fa-water"></i> Bombas de Pozo Profundo</a></li>
+                        <li><a href="#"><i class="fas fa-microchip"></i> Tableros y Control</a></li>
+                        <li><a href="#"><i class="fas fa-solar-panel"></i> Equipos Solares</a></li>
+                        <li><a href="#"><i class="fas fa-swimming-pool"></i> Sistemas de Piscina</a></li>
+                    </ul>
+                    <a href="tienda.html" class="btn-tienda">Explorar Catálogo Completo <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <!-- Columna Derecha: Imagen -->
+                <div class="col-lg-5">
+                    <div class="banner-image">
+                        <img src="img/pexels-3.jpg" alt="Sala de bombas industrial moderna con equipo técnico de acero inoxidable" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="why-section section-padding" id="nosotros">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>¿Por Qué Elegirnos?</h2>
+                <p>Más de 8 años respaldando la confianza de administradores y agricultores en todo Chile</p>
+            </div>
+            <div class="why-content">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="why-image reveal">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=700&h=500&fit=crop" alt="Técnico FluidPump">
+                            <div class="experience-badge">
+                                <span class="number">8+</span>
+                                <span class="label">Años de<br>Experiencia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="why-list reveal">
+                            <div class="why-item">
+                                <div class="check-icon"><i class="fas fa-check"></i></div>
+                                <div>
+                                    <h6>Diagnóstico Certero</h6>
+                                    <p>Utilizamos tecnología de última generación para identificar el problema real de tu sistema de bombeo.</p>
+                                </div>
+                            </div>
+                            <div class="why-item">
+                                <div class="check-icon"><i class="fas fa-check"></i></div>
+                                <div>
+                                    <h6>Repuestos Originales</h6>
+                                    <p>Trabajamos exclusivamente con repuestos y equipos originales que garantizan la más larga duración.</p>
+                                </div>
+                            </div>
+                            <div class="why-item">
+                                <div class="check-icon"><i class="fas fa-check"></i></div>
+                                <div>
+                                    <h6>Técnicos Certificados</h6>
+                                    <p>Nuestro equipo cuenta con certificaciones manufactureras y capacitación continua.</p>
+                                </div>
+                            </div>
+                            <div class="why-item">
+                                <div class="check-icon"><i class="fas fa-check"></i></div>
+                                <div>
+                                    <h6>Respuesta Rápida ante Emergencias</h6>
+                                    <p>Estamos disponibles 24/7 para resolver situaciones urgentes en menos de 2 horas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section section-padding" id="testimonios">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Casos de Éxito</h2>
+                <p>La confianza de nuestros clientes es nuestro mayor respaldo</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card reveal">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p>"FluidPump salvó nuestra sala de bombas de un edificio de 120 departamentos. Llegaron en menos de una hora y solucionaron el problema el mismo día."</p>
+                        <div class="author">
+                            <div class="author-avatar">CR</div>
+                            <div class="author-info">
+                                <h6>Claudia Rojas</h6>
+                                <span>Administradora - Edif. Los Alerces, Las Condes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card reveal">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p>"Instalaron el sistema de bombeo solar en nuestra parcela de Viña del Mar. Excelente atención y el equipo funciona perfecto. Totalmente recomendados."</p>
+                        <div class="author">
+                            <div class="author-avatar">MG</div>
+                            <div class="author-info">
+                                <h6>Miguel González</h6>
+                                <span>Agricultor - Viña del Mar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card reveal">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"Llevan más de 3 años haciendo la mantención de nuestra planta industrial. Cero fallas, cero sorpresas. Son el partner técnico ideal para nosotros."</p>
+                        <div class="author">
+                            <div class="author-avatar">PS</div>
+                            <div class="author-info">
+                                <h6>Pablo Soto</h6>
+                                <span>Jefe de Planta - Ind. Alimenticias Sur</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA EMERGENCY -->
+    <section class="cta-emergency section-padding" id="contacto">
+        <div class="container position-relative" style="z-index: 2;">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <h2 class="mb-3">¿Tienes un problema urgente con la bomba de tu edificio?</h2>
+                    <p>No esperes más. Nuestro equipo técnico está disponible 24/7 para resolver tu emergencia al instante.</p>
+                </div>
+                <div class="col-lg-5 text-lg-end">
+                    <a href="https://wa.me/56912345678?text=URGENTE%3A%20Necesito%20ayuda%20con%20bomba%20de%20edificio" class="btn-emergency">
+                        <div class="emergency-pulse"></div>
+                        <i class="fab fa-whatsapp"></i> Hablar con un Asesor Ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <img src="LOGO.png" alt="FluidPump" style="width:38px;height:38px;object-fit:contain;">
+                        <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.3rem;color:white;">Fluid<span style="color:var(--accent-light);">Pump</span></span>
+                    </div>
+                    <p style="font-size:0.9rem;line-height:1.7;margin-bottom:20px;">Soluciones integrales en equipos de bombeo y mantención industrial. Más de 8 años de experiencia respaldando a edificios, parcelas e industrias en Chile.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Enlaces</h5>
+                    <ul>
+                        <li><a href="#inicio"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Inicio</a></li>
+                        <li><a href="#nosotros"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Nosotros</a></li>
+                        <li><a href="#servicios"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Servicios</a></li>
+                        <li><a href="tienda.html"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Productos</a></li>
+                        <li><a href="#testimonios"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Casos de Éxito</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Servicios</h5>
+                    <ul>
+                        <li><i class="fas fa-wrench" style="font-size:0.75rem;"></i> Mantención Preventiva</li>
+                        <li><i class="fas fa-tools" style="font-size:0.75rem;"></i> Servicio Técnico</li>
+                        <li><i class="fas fa-water" style="font-size:0.75rem;"></i> Pozos Profundos</li>
+                        <li><i class="fas fa-bolt" style="font-size:0.75rem;"></i> Tableros Eléctricos</li>
+                        <li><i class="fas fa-solar-panel" style="font-size:0.75rem;"></i> Equipos Solares</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Contacto</h5>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Santiago, Chile</li>
+                        <li><i class="fas fa-phone-alt"></i> +56 9 1234 5678</li>
+                        <li><i class="fab fa-whatsapp"></i> WhatsApp 24/7</li>
+                        <li><i class="fas fa-envelope"></i> ventas@fluidpump.cl</li>
+                        <li><i class="fas fa-clock"></i> Lun - Vie: 8:00 - 18:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FluidPump. Todos los derechos reservados. | Soluciones en Bombeo para Chile.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FAB -->
+    <a href="https://wa.me/56912345678?text=Hola%2C%20necesito%20información%20sobre%20servicios%20de%20bombeo" class="whatsapp-fab" target="_blank" title="Chatea con nosotros por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
