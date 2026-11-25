@@ -312,3 +312,56 @@ document.addEventListener('DOMContentLoaded', function () {
         if (tab.dataset.industryTab === key) { tab.classList.add('active'); tab.setAttribute('aria-current', 'page'); }
     });
 });
+
+// Barra de progreso de desplazamiento con actualización agrupada por frame.
+document.addEventListener('DOMContentLoaded', function () {
+    var bar = document.getElementById('scrollFlow');
+    var fill = document.getElementById('scrollFlowFill');
+    if (!bar || !fill) return;
+    var queued = false;
+    function updateFlow() {
+        queued = false;
+        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        var percentage = scrollable > 0 ? Math.min(100, Math.max(0, (window.scrollY / scrollable) * 100)) : 0;
+        fill.style.width = percentage.toFixed(2) + '%';
+        bar.setAttribute('aria-valuenow', String(Math.round(percentage)));
+    }
+    function queueUpdate() {
+        if (queued) return;
+        queued = true;
+        window.requestAnimationFrame(updateFlow);
+    }
+    window.addEventListener('scroll', queueUpdate, { passive: true });
+    window.addEventListener('resize', queueUpdate, { passive: true });
+    updateFlow();
+});
+
+// Asistente de aplicación: traduce la necesidad a una categoría existente.
+document.addEventListener('DOMContentLoaded', function () {
+    var select = document.getElementById('applicationType');
+    var link = document.getElementById('applicationGo');
+    var suggestion = document.getElementById('applicationSuggestion');
+    if (!select || !link) return;
+    var applications = {
+        estanques: { text: 'Recomendación: sistemas de presurización y almacenamiento.', category: 'estanques' },
+        pozo: { text: 'Recomendación: bombas para pozo profundo y sistemas de impulsión para riego.', category: 'pozo' },
+        achique: { text: 'Recomendación: bombas de achique para drenaje y aplicaciones industriales.', category: 'achique' }
+    };
+    function applySuggestion() {
+        var option = applications[select.value];
+        if (!option) {
+            link.href = 'tienda.html';
+            link.setAttribute('aria-disabled', 'true');
+            if (suggestion) suggestion.textContent = 'Elige una aplicación y te llevamos a la categoría recomendada.';
+            return;
+        }
+        link.href = 'tienda.html?categoria=' + encodeURIComponent(option.category);
+        link.setAttribute('aria-disabled', 'false');
+        if (suggestion) suggestion.textContent = option.text;
+    }
+    var currentIndustry = document.getElementById('industrySolution')?.dataset.industry;
+    var defaults = { edificios: 'estanques', agricultura: 'pozo', industrias: 'achique' };
+    if (defaults[currentIndustry]) select.value = defaults[currentIndustry];
+    select.addEventListener('change', applySuggestion);
+    applySuggestion();
+});
