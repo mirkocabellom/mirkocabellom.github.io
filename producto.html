@@ -13,55 +13,31 @@
 </head>
 <body>
 
-    <!-- TOPBAR -->
-    <div class="topbar d-none d-md-block">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="topbar-left">
-                    <a href="tel:+56912345678"><i class="fas fa-phone-alt me-1"></i> +56 9 1234 5678</a>
-                    <span class="divider"></span>
-                    <a href="https://wa.me/56912345678"><i class="fab fa-whatsapp me-1"></i> WhatsApp</a>
-                    <span class="divider"></span>
-                    <a href="mailto:ventas@fluidpump.cl"><i class="fas fa-envelope me-1"></i> ventas@fluidpump.cl</a>
-                    <span class="divider d-none d-lg-inline"></span>
-                    <span class="d-none d-lg-inline"><i class="fas fa-clock me-1"></i> Lun - Vie: 8:00 - 18:00</span>
-                </div>
-                <div class="topbar-right d-none d-md-block">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- NAVBAR -->
+<!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-main sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="LOGO.png" alt="FluidPump" class="brand-icon">
-                Fluid<span>Pump</span>
+        <div class="container site-container">
+            <a class="navbar-brand" href="index.html" aria-label="FluidPump, inicio">
+                <img src="LOGO.png" alt="" class="brand-icon">
+                <span class="brand-wordmark">Fluid<span>Pump</span></span>
             </a>
+            <form class="navbar-search" action="tienda.html" method="get" role="search">
+                <label class="visually-hidden" for="navSearch">Buscar en el catálogo</label>
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input id="navSearch" type="search" name="q" placeholder="Buscar bombas, modelos o SKU...">
+                <button type="submit" aria-label="Buscar"><i class="fas fa-arrow-right"></i></button>
+            </form>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <i class="fas fa-bars" style="font-size: 1.3rem; color: var(--primary-dark);"></i>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#industrias">Soluciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="categorias.html">Catálogo</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#servicios">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="index.html#tienda-banner">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#nosotros">Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#testimonios">Casos de Éxito</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#contacto">Contacto</a></li>
-                    <li class="nav-item ms-lg-2">
-                        <a class="nav-link btn-cta-nav" href="https://wa.me/56912345678"><i class="fas fa-bolt me-1"></i> Emergencia 24/7</a>
-                    </li>
-                    <li class="nav-item ms-lg-2">
-                        <a class="nav-link" href="checkout.html" style="position:relative;display:flex;align-items:center;">
-                            <i class="fas fa-cart-shopping" style="font-size:1.1rem;color:var(--primary-dark);"></i>
-                            <span style="position:absolute;top:4px;right:-4px;background:var(--warning-orange);color:white;font-size:0.6rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">1</span>
-                        </a>
-                    </li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn-cta-nav" href="https://wa.me/56912345678"><i class="fas fa-bolt me-1"></i> Emergencia 24/7</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link nav-cart" href="checkout.html" aria-label="Carrito de compras, 0 productos"><i class="fas fa-cart-shopping"></i><span class="cart-count">0</span></a></li>
                 </ul>
             </div>
         </div>
@@ -69,7 +45,7 @@
 
     <!-- CONTENIDO PRODUCTO -->
     <section class="producto-page">
-        <div class="container">
+        <div class="container site-container">
 
             <!-- Breadcrumbs -->
             <nav class="producto-breadcrumb" aria-label="breadcrumb">
@@ -245,7 +221,7 @@
 
     <!-- PRODUCTOS RELACIONADOS -->
     <section class="related-section">
-        <div class="container">
+        <div class="container site-container">
             <div class="section-title">
                 <h2>Accesorios recomendados para este equipo</h2>
                 <p>Complementa tu compra con productos compatibles</p>
@@ -313,7 +289,7 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
+        <div class="container site-container">
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="d-flex align-items-center gap-2 mb-3">

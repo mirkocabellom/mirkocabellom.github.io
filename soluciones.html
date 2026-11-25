@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluciones por Industria | FluidPump</title>
+    <meta name="description" content="Soluciones FluidPump para edificios, agricultura e industrias. Equipos, instalación y mantención técnica en Chile.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-main sticky-top">
+        <div class="container site-container">
+            <a class="navbar-brand" href="index.html" aria-label="FluidPump, inicio"><img src="LOGO.png" alt="" class="brand-icon"><span class="brand-wordmark">Fluid<span>Pump</span></span></a>
+            <form class="navbar-search" action="tienda.html" method="get" role="search"><label class="visually-hidden" for="navSearch">Buscar en el catálogo</label><i class="fas fa-search" aria-hidden="true"></i><input id="navSearch" type="search" name="q" placeholder="Buscar bombas, modelos o SKU..."><button type="submit" aria-label="Buscar"><i class="fas fa-arrow-right"></i></button></form>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú"><i class="fas fa-bars" style="font-size:1.3rem;color:var(--primary-dark);"></i></button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav"><ul class="navbar-nav align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li><li class="nav-item"><a class="nav-link active" href="index.html#industrias">Soluciones</a></li><li class="nav-item"><a class="nav-link" href="categorias.html">Catálogo</a></li><li class="nav-item"><a class="nav-link" href="index.html#servicios">Servicios</a></li><li class="nav-item"><a class="nav-link" href="index.html#contacto">Contacto</a></li>
+                <li class="nav-item ms-lg-2"><a class="nav-link btn-cta-nav" href="https://wa.me/56912345678"><i class="fas fa-bolt me-1"></i> Emergencia 24/7</a></li><li class="nav-item ms-lg-2"><a class="nav-link nav-cart" href="checkout.html" aria-label="Carrito de compras, 0 productos"><i class="fas fa-cart-shopping"></i><span class="cart-count">0</span></a></li>
+            </ul></div>
+        </div>
+    </nav>
+
+    <main id="industrySolution" data-industry="edificios">
+        <header class="solution-hero" id="solutionHero">
+            <div class="container site-container solution-hero-content">
+                <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html">Inicio</a></li><li class="breadcrumb-item"><a href="index.html#industrias">Soluciones</a></li><li class="breadcrumb-item active" id="solutionBreadcrumb" aria-current="page">Edificios y Condominios</li></ol></nav>
+                <span class="section-eyebrow">Soluciones por industria</span>
+                <h1 id="solutionTitle">Edificios y Condominios</h1>
+                <p id="solutionIntro">Sistemas confiables de presurización y mantención para la continuidad del suministro de agua.</p>
+                <a id="solutionPrimaryCta" href="tienda.html?categoria=estanques" class="btn-hero-primary"><i class="fas fa-boxes-stacked"></i> Ver equipos relacionados</a>
+            </div>
+        </header>
+        <nav class="industry-switcher" aria-label="Seleccionar industria">
+            <div class="container site-container">
+                <a href="soluciones.html?industria=edificios" data-industry-tab="edificios"><i class="fas fa-building"></i> Edificios y Condominios</a>
+                <a href="soluciones.html?industria=agricultura" data-industry-tab="agricultura"><i class="fas fa-tractor"></i> Agricultura y Parcelas</a>
+                <a href="soluciones.html?industria=industrias" data-industry-tab="industrias"><i class="fas fa-industry"></i> Industrias y Plantas</a>
+            </div>
+        </nav>
+        <section class="solution-overview section-padding">
+            <div class="container site-container">
+                <div class="row g-5">
+                    <div class="col-lg-6"><span class="section-eyebrow">Desafíos operativos</span><h2 id="challengeTitle">Continuidad, presión y eficiencia en cada edificio</h2><p id="challengeCopy">Las variaciones de demanda, las fallas inesperadas y la falta de mantención pueden interrumpir el suministro y afectar a toda una comunidad.</p>
+                        <ul class="solution-checklist" id="challengeList"></ul>
+                    </div>
+                    <div class="col-lg-6"><div class="solution-panel"><span class="section-eyebrow">Respuesta FluidPump</span><h2 id="responseTitle">Diseño, instalación y respaldo técnico</h2><p id="responseCopy">Evaluamos la operación, seleccionamos equipos adecuados y acompañamos el sistema durante su ciclo de vida.</p><div class="solution-service-list" id="serviceList"></div></div></div>
+                </div>
+            </div>
+        </section>
+        <section class="solution-products section-padding">
+            <div class="container site-container">
+                <div class="section-title"><h2>Productos relacionados</h2><p id="productsIntro">Categorías y equipos para implementar esta solución.</p></div>
+                <div class="solution-product-grid" id="solutionProducts"></div>
+                <div class="solution-bottom-cta"><div><h2>¿Necesitas dimensionar tu sistema?</h2><p>Cuéntanos sobre tu proyecto y te orientamos con una alternativa adecuada.</p></div><a id="solutionCatalogCta" href="tienda.html?categoria=estanques" class="btn-hero-primary">Explorar catálogo <i class="fas fa-arrow-right"></i></a><a href="https://wa.me/56912345678?text=Hola%2C%20necesito%20asesor%C3%ADa%20para%20una%20soluci%C3%B3n%20industrial" class="solution-whatsapp"><i class="fab fa-whatsapp"></i> Solicitar asesoría</a></div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="scripts.js"></script>
+</body>
+</html>

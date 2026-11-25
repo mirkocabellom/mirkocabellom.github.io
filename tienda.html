@@ -13,55 +13,31 @@
 </head>
 <body>
 
-    <!-- TOPBAR -->
-    <div class="topbar d-none d-md-block">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="topbar-left">
-                    <a href="tel:+56912345678"><i class="fas fa-phone-alt me-1"></i> +56 9 1234 5678</a>
-                    <span class="divider"></span>
-                    <a href="https://wa.me/56912345678"><i class="fab fa-whatsapp me-1"></i> WhatsApp</a>
-                    <span class="divider"></span>
-                    <a href="mailto:ventas@fluidpump.cl"><i class="fas fa-envelope me-1"></i> ventas@fluidpump.cl</a>
-                    <span class="divider d-none d-lg-inline"></span>
-                    <span class="d-none d-lg-inline"><i class="fas fa-clock me-1"></i> Lun - Vie: 8:00 - 18:00</span>
-                </div>
-                <div class="topbar-right d-none d-md-block">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- NAVBAR -->
+<!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-main sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="LOGO.png" alt="FluidPump" class="brand-icon">
-                Fluid<span>Pump</span>
+        <div class="container site-container">
+            <a class="navbar-brand" href="index.html" aria-label="FluidPump, inicio">
+                <img src="LOGO.png" alt="" class="brand-icon">
+                <span class="brand-wordmark">Fluid<span>Pump</span></span>
             </a>
+            <form class="navbar-search" action="tienda.html" method="get" role="search">
+                <label class="visually-hidden" for="navSearch">Buscar en el catálogo</label>
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input id="navSearch" type="search" name="q" placeholder="Buscar bombas, modelos o SKU...">
+                <button type="submit" aria-label="Buscar"><i class="fas fa-arrow-right"></i></button>
+            </form>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <i class="fas fa-bars" style="font-size: 1.3rem; color: var(--primary-dark);"></i>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#industrias">Soluciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="categorias.html">Catálogo</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#servicios">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="tienda.html">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#nosotros">Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#testimonios">Casos de Éxito</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#contacto">Contacto</a></li>
-                    <li class="nav-item ms-lg-2">
-                        <a class="nav-link btn-cta-nav" href="https://wa.me/56912345678"><i class="fas fa-bolt me-1"></i> Emergencia 24/7</a>
-                    </li>
-                    <li class="nav-item ms-lg-2">
-                        <a class="nav-link" href="checkout.html" style="position:relative;display:flex;align-items:center;">
-                            <i class="fas fa-cart-shopping" style="font-size:1.1rem;color:var(--primary-dark);"></i>
-                            <span style="position:absolute;top:4px;right:-4px;background:var(--warning-orange);color:white;font-size:0.6rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">1</span>
-                        </a>
-                    </li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn-cta-nav" href="https://wa.me/56912345678"><i class="fas fa-bolt me-1"></i> Emergencia 24/7</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link nav-cart" href="checkout.html" aria-label="Carrito de compras, 0 productos"><i class="fas fa-cart-shopping"></i><span class="cart-count">0</span></a></li>
                 </ul>
             </div>
         </div>
@@ -69,7 +45,7 @@
 
     <!-- PAGE HEADER -->
     <section class="tienda-header">
-        <div class="container">
+        <div class="container site-container">
             <nav class="tienda-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
@@ -82,9 +58,9 @@
         </div>
     </section>
 
-    <!-- CONTENIDO PRINCIPAL -->
+<!-- CONTENIDO PRINCIPAL -->
     <section class="tienda-page section-padding">
-        <div class="container">
+        <div class="container site-container">
             <div class="row g-4">
 
                 <!-- Overlay movil para filtros -->
@@ -105,7 +81,7 @@
                         <!-- Buscador -->
                         <div class="search-box">
                             <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Buscar por modelo, marca o SKU...">
+                            <input type="search" id="catalogSearch" placeholder="Buscar por modelo, marca o SKU..." aria-label="Buscar productos">
                         </div>
 
                         <!-- Categorias -->
@@ -234,10 +210,11 @@
                                     <div class="card-category">Pozo Profundo</div>
                                     <h6>Bomba de Pozo Profundo Pedrollo 1.5 HP Monofásica</h6>
                                     <div class="card-sku">SKU: FP-PED-150M</div>
-                                    <div class="card-specs">1.5 HP | 220V</div>
+                                    <div class="card-specs"><span>1.5 HP </span><span>220V</span></div>
                                     <div class="card-price">$249.900 <small>CLP IVA incl.</small></div>
                                     <div class="card-actions">
                                         <a href="producto.html" class="btn-ver-producto"><i class="fas fa-eye"></i> Ver Producto</a>
+                                        <button type="button" class="btn-add-card" aria-label="Agregar producto al carrito"><i class="fas fa-cart-plus"></i><span>Agregar</span></button>
                                         <a href="https://wa.me/56912345678?text=Hola%2C%20quiero%20info%20de%20Pedrollo%201.5HP" class="btn-wa-quick" target="_blank"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
@@ -258,10 +235,11 @@
                                     <div class="card-category">Superficie</div>
                                     <h6>Bomba de Superficie Pedrollo PKm 100 HP Monofásica</h6>
                                     <div class="card-sku">SKU: FP-PED-S100</div>
-                                    <div class="card-specs">1.0 HP | 220V</div>
+                                    <div class="card-specs"><span>1.0 HP </span><span>220V</span></div>
                                     <div class="card-price">$129.900 <small>CLP IVA incl.</small></div>
                                     <div class="card-actions">
                                         <a href="producto.html" class="btn-ver-producto"><i class="fas fa-eye"></i> Ver Producto</a>
+                                        <button type="button" class="btn-add-card" aria-label="Agregar producto al carrito"><i class="fas fa-cart-plus"></i><span>Agregar</span></button>
                                         <a href="https://wa.me/56912345678?text=Hola%2C%20quiero%20info%20de%20Pedrollo%20Superficie" class="btn-wa-quick" target="_blank"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
@@ -282,10 +260,11 @@
                                     <div class="card-category">Achique</div>
                                     <h6>Bomba de Achique Bestflow BDF-50 0.5 HP</h6>
                                     <div class="card-sku">SKU: FP-BFS-050</div>
-                                    <div class="card-specs">0.5 HP | 220V</div>
+                                    <div class="card-specs"><span>0.5 HP </span><span>220V</span></div>
                                     <div class="card-price">$79.900 <small>CLP IVA incl.</small></div>
                                     <div class="card-actions">
                                         <a href="producto.html" class="btn-ver-producto"><i class="fas fa-eye"></i> Ver Producto</a>
+                                        <button type="button" class="btn-add-card" aria-label="Agregar producto al carrito"><i class="fas fa-cart-plus"></i><span>Agregar</span></button>
                                         <a href="https://wa.me/56912345678?text=Hola%2C%20quiero%20info%20de%20Bestflow%20Achique" class="btn-wa-quick" target="_blank"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
@@ -306,10 +285,11 @@
                                     <div class="card-category">Pozo Profundo</div>
                                     <h6>Bomba de Pozo Profundo Pedrollo 3.0 HP Trifásica</h6>
                                     <div class="card-sku">SKU: FP-PED-300T</div>
-                                    <div class="card-specs">3.0 HP | 380V</div>
+                                    <div class="card-specs"><span>3.0 HP </span><span>380V</span></div>
                                     <div class="card-price">$429.900 <small>CLP IVA incl.</small></div>
                                     <div class="card-actions">
                                         <a href="producto.html" class="btn-ver-producto"><i class="fas fa-eye"></i> Ver Producto</a>
+                                        <button type="button" class="btn-add-card" aria-label="Agregar producto al carrito"><i class="fas fa-cart-plus"></i><span>Agregar</span></button>
                                         <a href="https://wa.me/56912345678?text=Hola%2C%20quiero%20info%20de%20Pedrollo%203HP" class="btn-wa-quick" target="_blank"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
@@ -330,10 +310,11 @@
                                     <div class="card-category">Estanques y Presurización</div>
                                     <h6>Estanque de Presurización Varem 200 Litros</h6>
                                     <div class="card-sku">SKU: FP-VAR-200</div>
-                                    <div class="card-specs">200L | Membrana</div>
+                                    <div class="card-specs"><span>200L </span><span>Membrana</span></div>
                                     <div class="card-price">$189.900 <small>CLP IVA incl.</small></div>
                                     <div class="card-actions">
                                         <a href="producto.html" class="btn-ver-producto"><i class="fas fa-eye"></i> Ver Producto</a>
+                                        <button type="button" class="btn-add-card" aria-label="Agregar producto al carrito"><i class="fas fa-cart-plus"></i><span>Agregar</span></button>
                                         <a href="https://wa.me/56912345678?text=Hola%2C%20quiero%20info%20de%20Estanque%20Varem" class="btn-wa-quick" target="_blank"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
@@ -354,10 +335,11 @@
                                     <div class="card-category">Tableros y Control</div>
                                     <h6>Tablero de Control Monofásico Arven TCM-220</h6>
                                     <div class="card-sku">SKU: FP-ARV-TCM</div>
-                                    <div class="card-specs">220V | Monofásico</div>
+                                    <div class="card-specs"><span>220V </span><span>Monofásico</span></div>
                                     <div class="card-price">$89.900 <small>CLP IVA incl.</small></div>
                                     <div class="card-actions">
                                         <a href="producto.html" class="btn-ver-producto"><i class="fas fa-eye"></i> Ver Producto</a>
+                                        <button type="button" class="btn-add-card" aria-label="Agregar producto al carrito"><i class="fas fa-cart-plus"></i><span>Agregar</span></button>
                                         <a href="https://wa.me/56912345678?text=Hola%2C%20quiero%20info%20de%20Tablero%20Arven" class="btn-wa-quick" target="_blank"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
@@ -377,10 +359,11 @@
                                     <div class="card-category">Superficie</div>
                                     <h6>Bomba de Superficie Bestflow BDF-200 2.0 HP</h6>
                                     <div class="card-sku">SKU: FP-BFS-200</div>
-                                    <div class="card-specs">2.0 HP | 220V</div>
+                                    <div class="card-specs"><span>2.0 HP </span><span>220V</span></div>
                                     <div class="card-price">$179.900 <small>CLP IVA incl.</small></div>
                                     <div class="card-actions">
                                         <a href="producto.html" class="btn-ver-producto"><i class="fas fa-eye"></i> Ver Producto</a>
+                                        <button type="button" class="btn-add-card" aria-label="Agregar producto al carrito"><i class="fas fa-cart-plus"></i><span>Agregar</span></button>
                                         <a href="https://wa.me/56912345678?text=Hola%2C%20quiero%20info%20de%20Bestflow%202HP" class="btn-wa-quick" target="_blank"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
@@ -400,10 +383,11 @@
                                     <div class="card-category">Achique</div>
                                     <h6>Bomba de Achique Pedrollo 2ABm 1.0 HP Trifásica</h6>
                                     <div class="card-sku">SKU: FP-PED-A100T</div>
-                                    <div class="card-specs">1.0 HP | 380V</div>
+                                    <div class="card-specs"><span>1.0 HP </span><span>380V</span></div>
                                     <div class="card-price">$159.900 <small>CLP IVA incl.</small></div>
                                     <div class="card-actions">
                                         <a href="producto.html" class="btn-ver-producto"><i class="fas fa-eye"></i> Ver Producto</a>
+                                        <button type="button" class="btn-add-card" aria-label="Agregar producto al carrito"><i class="fas fa-cart-plus"></i><span>Agregar</span></button>
                                         <a href="https://wa.me/56912345678?text=Hola%2C%20quiero%20info%20de%20Pedrollo%20Achique" class="btn-wa-quick" target="_blank"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
@@ -423,10 +407,11 @@
                                     <div class="card-category">Estanques y Presurización</div>
                                     <h6>Estanque de Presurización Varem 500 Litros Trifásico</h6>
                                     <div class="card-sku">SKU: FP-VAR-500</div>
-                                    <div class="card-specs">500L | Trifásico</div>
+                                    <div class="card-specs"><span>500L </span><span>Trifásico</span></div>
                                     <div class="card-price">$349.900 <small>CLP IVA incl.</small></div>
                                     <div class="card-actions">
                                         <a href="producto.html" class="btn-ver-producto"><i class="fas fa-eye"></i> Ver Producto</a>
+                                        <button type="button" class="btn-add-card" aria-label="Agregar producto al carrito"><i class="fas fa-cart-plus"></i><span>Agregar</span></button>
                                         <a href="https://wa.me/56912345678?text=Hola%2C%20quiero%20info%20de%20Estanque%20Varem%20500" class="btn-wa-quick" target="_blank"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
@@ -455,7 +440,7 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
+        <div class="container site-container">
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="d-flex align-items-center gap-2 mb-3">
@@ -475,7 +460,7 @@
                         <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Inicio</a></li>
                         <li><a href="index.html#nosotros"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Nosotros</a></li>
                         <li><a href="index.html#servicios"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Servicios</a></li>
-                        <li><a href="tienda.html"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Productos</a></li>
+                        <li><a href="categorias.html"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Catálogo</a></li>
                         <li><a href="index.html#testimonios"><i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> Casos de Éxito</a></li>
                     </ul>
                 </div>
@@ -513,26 +498,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="scripts.js"></script>
-    <script>
-        function openFiltros() {
-            document.getElementById('filtrosSidebar').classList.add('show');
-            document.getElementById('filtrosOverlay').classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeFiltros() {
-            document.getElementById('filtrosSidebar').classList.remove('show');
-            document.getElementById('filtrosOverlay').classList.remove('show');
-            document.body.style.overflow = '';
-        }
-
-        function clearFilters() {
-            document.querySelectorAll('.filtros-sidebar input[type="checkbox"]').forEach(function(cb) {
-                cb.checked = false;
-            });
-            var searchInput = document.querySelector('.search-box input');
-            if (searchInput) searchInput.value = '';
-        }
-    </script>
 </body>
 </html>
